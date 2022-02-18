@@ -22,18 +22,19 @@ router.get('/:course_id', tokenMiddle, function (req, res, next) {
             let users = [];
             let promises = [];
             for (i = 0; i < response.data.results.length; i++) {
-                promises.push(
-                    axios.get('http://192.168.56.101/api/user/v1/accounts', {
-                        params: {
-                            username: response.data.results[i].user
-                        }, 
-                        headers: {
-                            Authorization: 'Bearer ' + variable.BEARER.access_token,
-                        },
-                    }).then(response => {
-                        users.push(response.data[0]);
-                    })
-                )
+                if (response.data.results[i].is_active)
+                    promises.push(
+                        axios.get('http://192.168.56.101/api/user/v1/accounts', {
+                            params: {
+                                username: response.data.results[i].user
+                            }, 
+                            headers: {
+                                Authorization: 'Bearer ' + variable.BEARER.access_token,
+                            },
+                        }).then(response => {
+                            users.push(response.data[0]);
+                        })
+                    )
             }
             Promise.all(promises).then(() => {
                 res.render('courses/list', { course_id: req.params.course_id, users: users, next: next, previous: previous });
@@ -61,18 +62,19 @@ router.get('/:course_id/:page', tokenMiddle, function (req, res, next) {
             let users = [];
             let promises = [];
             for (i = 0; i < response.data.results.length; i++) {
-                promises.push(
-                    axios.get('http://192.168.56.101/api/user/v1/accounts', {
-                        params: {
-                            username: response.data.results[i].user
-                        }, 
-                        headers: {
-                            Authorization: 'Bearer ' + variable.BEARER.access_token,
-                        },
-                    }).then(response => {
-                        users.push(response.data[0]);
-                    })
-                )
+                if (response.data.results[i].is_active)
+                    promises.push(
+                        axios.get('http://192.168.56.101/api/user/v1/accounts', {
+                            params: {
+                                username: response.data.results[i].user
+                            }, 
+                            headers: {
+                                Authorization: 'Bearer ' + variable.BEARER.access_token,
+                            },
+                        }).then(response => {
+                            users.push(response.data[0]);
+                        })
+                    )
             }
             Promise.all(promises).then(() => {
                 res.render('courses/list', { course_id: req.params.course_id, users: users, next: next, previous: previous });

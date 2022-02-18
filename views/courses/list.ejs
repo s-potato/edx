@@ -30,7 +30,7 @@
         </thead>
         <tbody>
         <% users.forEach(user=> { %>
-            <%- include('enrollment', {user: user}); %>
+            <%- include('enrollment', {user: user, course_id: course_id}); %>
         <% }) %>
         </tbody>
 
