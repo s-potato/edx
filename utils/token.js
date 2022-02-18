@@ -11,7 +11,7 @@ var token = function (cb) {
         client_secret: process.env.CLIENT_SECRET,
         token_type: "jwt"
     }
-    axios({ method: 'post', url: "http://192.168.56.101/oauth2/access_token", params: params })
+    axios({ method: 'post', url: process.env.EDX+"/oauth2/access_token", params: params })
         .then((response) => {
             variable.BEARER = response.data;
             variable.BEARER.expires_in = Date.now() + response.data.expires_in*1000;

@@ -1,7 +1,7 @@
 <div class="col-3">
 <div>
     <a href="/course/<%= course.id %>">
-        <img src="http://192.168.56.101<%= course.media.course_image.uri %>"
+        <img src="<%= domain %><%= course.media.course_image.uri %>"
         onerror="this.onerror=null; this.src='/images/default.webp';"
         alt="<%= course.name %>">
     </a>

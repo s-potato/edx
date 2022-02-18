@@ -6,7 +6,7 @@ var router = express.Router();
 
 /* GET users listing. */
 router.get('/:course_id', tokenMiddle, function (req, res, next) {
-    axios.get("http://192.168.56.101/api/enrollment/v1/enrollments?course_id="+encodeURIComponent(req.params.course_id), {
+    axios.get(process.env.EDX+"/api/enrollment/v1/enrollments?course_id="+encodeURIComponent(req.params.course_id), {
         headers: {
             Authorization: 'Bearer ' + variable.BEARER.access_token,
         },
@@ -24,7 +24,7 @@ router.get('/:course_id', tokenMiddle, function (req, res, next) {
             for (i = 0; i < response.data.results.length; i++) {
                 if (response.data.results[i].is_active)
                     promises.push(
-                        axios.get('http://192.168.56.101/api/user/v1/accounts', {
+                        axios.get(process.env.EDX+'/api/user/v1/accounts', {
                             params: {
                                 username: response.data.results[i].user
                             }, 
@@ -46,7 +46,7 @@ router.get('/:course_id', tokenMiddle, function (req, res, next) {
 });
 
 router.get('/:course_id/:page', tokenMiddle, function (req, res, next) {
-    axios.get("http://192.168.56.101/api/enrollment/v1/enrollments?course_id="+encodeURIComponent(req.params.course_id)+"&"+req.params.page, {
+    axios.get(process.env.EDX+"/api/enrollment/v1/enrollments?course_id="+encodeURIComponent(req.params.course_id)+"&"+req.params.page, {
         headers: {
             Authorization: 'Bearer ' + variable.BEARER.access_token,
         },
@@ -64,7 +64,7 @@ router.get('/:course_id/:page', tokenMiddle, function (req, res, next) {
             for (i = 0; i < response.data.results.length; i++) {
                 if (response.data.results[i].is_active)
                     promises.push(
-                        axios.get('http://192.168.56.101/api/user/v1/accounts', {
+                        axios.get(process.env.EDX+'/api/user/v1/accounts', {
                             params: {
                                 username: response.data.results[i].user
                             }, 
