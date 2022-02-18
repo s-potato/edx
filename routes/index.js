@@ -3,10 +3,11 @@ const { token } = require('../utils/token');
 var FormData = require('form-data');
 var axios = require('../utils/axios');
 var variable = require('../variable');
+var {tokenMiddle} = require('../utils/token')
 var router = express.Router();
 
 /* GET home page. */
-router.get('/', function (req, res, next) {
+router.get('/', tokenMiddle, function (req, res, next) {
     var username = "staff"
     let params = {
         username: username,
@@ -29,7 +30,7 @@ router.get('/', function (req, res, next) {
         })
 })
 
-router.get('/page/:page', function (req, res, next) {
+router.get('/page/:page', tokenMiddle, function (req, res, next) {
     var username = "staff"
     axios.get("http://192.168.56.101/api/courses/v1/courses?"+ req.params.page, {
         headers: {

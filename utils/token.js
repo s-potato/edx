@@ -1,7 +1,7 @@
 var axios = require('axios')
 var variable = require('../variable')
 
-exports.token = function (cb) {
+var token = function (cb) {
     if (variable.BEARER && variable.BEARER.expires_in > Date.now()) {
         return cb();
     }
@@ -20,5 +20,17 @@ exports.token = function (cb) {
         })
         .catch(err => {
             console.log(err);
-        })
+            return cb(err);
+    })
+}
+
+exports.token = token;
+
+exports.tokenMiddle = function(req, res, next) {
+    token((err)=>{
+        if (err) {
+            return next(err);
+        }
+        return next()
+    })
 }

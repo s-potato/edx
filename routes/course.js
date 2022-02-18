@@ -1,10 +1,11 @@
 var axios = require('../utils/axios');
 var express = require('express');
 var variable = require('../variable');
+var {tokenMiddle} = require('../utils/token')
 var router = express.Router();
 
 /* GET users listing. */
-router.get('/:course_id', function (req, res, next) {
+router.get('/:course_id', tokenMiddle, function (req, res, next) {
     axios.get("http://192.168.56.101/api/enrollment/v1/enrollments?course_id="+encodeURIComponent(req.params.course_id), {
         headers: {
             Authorization: 'Bearer ' + variable.BEARER.access_token,
@@ -43,11 +44,7 @@ router.get('/:course_id', function (req, res, next) {
         })
 });
 
-router.get('/:course_id/:page', function (req, res, next) {
-    let params = {
-        course_id: req.params.course_id
-    }
-    console.log(params)
+router.get('/:course_id/:page', tokenMiddle, function (req, res, next) {
     axios.get("http://192.168.56.101/api/enrollment/v1/enrollments?course_id="+encodeURIComponent(req.params.course_id)+"&"+req.params.page, {
         headers: {
             Authorization: 'Bearer ' + variable.BEARER.access_token,
