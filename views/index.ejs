@@ -21,8 +21,7 @@
         <p>Here is your course</p>
         <div class="row">
                 <% courses.forEach(course => { %>
-
-                    <%- include('courses/course', {course: course}); %>
+                    <%- include('courses/course', {course: course, domain: domain}); %>
                 <% }) %>
         </div>
     <% } %>

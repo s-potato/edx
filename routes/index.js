@@ -13,7 +13,7 @@ router.get('/', tokenMiddle, function (req, res, next) {
         username: username,
         page_size: 10,
     }
-    axios.get('http://192.168.56.101/api/courses/v1/courses', {
+    axios.get(process.env.EDX+'/api/courses/v1/courses', {
         params: params, headers: {
             Authorization: 'Bearer ' + variable.BEARER.access_token,
         },
@@ -24,7 +24,7 @@ router.get('/', tokenMiddle, function (req, res, next) {
                 pagination.next = String(pagination.next).split('?')[1];}
             if (pagination.previous) {
                 pagination.previous = String(pagination.previous).split('?')[1];}
-            res.render('index', { user: username, courses: response.data.results, pagination:  pagination});
+            res.render('index', { user: username, courses: response.data.results, pagination:  pagination, domain: process.env.EDX});
         }).catch(err => {
             res.status(500).json(err)
         })
@@ -32,7 +32,7 @@ router.get('/', tokenMiddle, function (req, res, next) {
 
 router.get('/page/:page', tokenMiddle, function (req, res, next) {
     var username = "staff"
-    axios.get("http://192.168.56.101/api/courses/v1/courses?"+ req.params.page, {
+    axios.get(process.env.EDX+"/api/courses/v1/courses?"+ req.params.page, {
         headers: {
             Authorization: 'Bearer ' + variable.BEARER.access_token,
         },
@@ -45,7 +45,7 @@ router.get('/page/:page', tokenMiddle, function (req, res, next) {
             if (pagination.previous) {
                 pagination.previous = String(pagination.previous).split('?')[1];
             }
-            res.render('index', { user: username, courses: response.data.results, pagination:  pagination});
+            res.render('index', { user: username, courses: response.data.results, pagination:  pagination, domain: process.env.EDX});
         }).catch(err => {
             res.status(500).json(err)
         })
