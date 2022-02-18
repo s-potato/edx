@@ -1,3 +1,16 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>
+    Administrator page
+  </title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+<div><a href="/">Back</a></div>
+
 <table>
     <tr>
         <th>Username</th>
@@ -11,14 +24,8 @@
     <% users.forEach(user=> { %>
         <%- include('enrollment', {user: user}); %>
     <% }) %>
-    
-    <div>
-        <% if(previous){ %>
-            <a href="/course/<%= course.id %>/<%= previous %>">Previous</a>
-        <% } %>
-        <% if(next){ %>
-            <a href="/course/<%= course.id %>/<%= next %>">Next</a>
-        <% } %>
-    </div>
-    
+
 </table>
+</body>
+
+</html>
