@@ -1,0 +1,24 @@
+<table>
+    <tr>
+        <th>Username</th>
+        <th>Name</th>
+        <th>Gender</th>
+        <th>Year of Birth</th>
+        <th>Email</th>
+        <th>Phone Number</th>
+        <th>Country</th>
+    </tr>
+    <% users.forEach(user=> { %>
+        <%- include('enrollment', {user: user}); %>
+    <% }) %>
+    
+    <div>
+        <% if(previous){ %>
+            <a href="/course/<%= course.id %>/<%= previous %>">Previous</a>
+        <% } %>
+        <% if(next){ %>
+            <a href="/course/<%= course.id %>/<%= next %>">Next</a>
+        <% } %>
+    </div>
+    
+</table>

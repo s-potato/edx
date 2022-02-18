@@ -3,24 +3,32 @@
 
 <head>
   <title>
-    <%= title %>
+    Administrator page
   </title>
   <link rel='stylesheet' href='/stylesheets/style.css' />
 </head>
 
 <body>
-  <h1>
-    <%= title %>
-  </h1>
-  <p>Welcome to <%= title %>
-  </p>
-  <form action="/login" method="post">
-    Username:<br>
-    <input type="email" name="email" placeholder="Email" required><br><br>
-    Password:<br>
-    <input type="password" name="password" placeholder="Password" required><br><br>
-    <input type="submit" value="login">
-  </form>
+    <h1>
+        Welcome, <%= user %>
+    </h1>
+    </p>
+    <% if(pagination.count == 0){ %>
+        <p>You have no course</p>
+    <% } else{ %>
+        <p>Here is your course</p>
+        <% courses.forEach(course => { %>
+            <%- include('courses/course', {course: course}); %>
+        <% }) %>
+    <% } %>
+    <div>
+        <% if(pagination.previous){ %>
+            <a href="/page/<%= pagination.previous %>">Previous</a>
+        <% } %>
+        <% if(pagination.next){ %>
+            <a href="/page/<%= pagination.next %>">Next</a>
+        <% } %>
+    </div>
 </body>
 
 </html>
