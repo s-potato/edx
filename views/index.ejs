@@ -26,12 +26,13 @@
                 <% }) %>
         </div>
     <% } %>
+    
     <div>
         <% if(pagination.previous){ %>
-            <a href="/page/<%= pagination.previous %>">Previous</a>
+            <a class="btn btn-primary button mt-3" href="/page/<%= pagination.previous %>">Previous</a>
         <% } %>
         <% if(pagination.next){ %>
-            <a href="/page/<%= pagination.next %>">Next</a>
+            <a class="btn btn-primary button mt-3" href="/page/<%= pagination.next %>">Next</a>
         <% } %>
     </div>
 

@@ -36,7 +36,7 @@ router.get('/:course_id', tokenMiddle, function (req, res, next) {
                 )
             }
             Promise.all(promises).then(() => {
-                res.render('courses/list', { users: users, next: next, previous: previous });
+                res.render('courses/list', { course_id: req.params.course_id, users: users, next: next, previous: previous });
             })
         }).catch(err => {
             console.log(err)
@@ -75,7 +75,7 @@ router.get('/:course_id/:page', tokenMiddle, function (req, res, next) {
                 )
             }
             Promise.all(promises).then(() => {
-                res.render('courses/list', { users: users, next: next, previous: previous });
+                res.render('courses/list', { course_id: req.params.course_id, users: users, next: next, previous: previous });
             })
         }).catch(err => {
             console.log(err)
