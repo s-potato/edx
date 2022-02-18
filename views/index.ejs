@@ -19,9 +19,12 @@
         <p>You have no course</p>
     <% } else{ %>
         <p>Here is your course</p>
-        <% courses.forEach(course => { %>
-            <%- include('courses/course', {course: course}); %>
-        <% }) %>
+        <div class="row">
+                <% courses.forEach(course => { %>
+
+                    <%- include('courses/course', {course: course}); %>
+                <% }) %>
+        </div>
     <% } %>
     <div>
         <% if(pagination.previous){ %>

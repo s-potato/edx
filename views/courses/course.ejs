@@ -1,10 +1,14 @@
-<li>
-    <div>
-        <img  style="width: 500px; height: auto;" src="http://192.168.56.101<%= course.media.course_image.uri %>" >
-    </div>
-    <div>
-        <a href="/course/<%= course.id %>">
-            <%= course.name %>
-        </a>
-    </div>
-</li>
+<div class="col-3">
+<div>
+    <a href="/course/<%= course.id %>">
+        <img src="http://192.168.56.101<%= course.media.course_image.uri %>"
+        onerror="this.onerror=null; this.src='/images/default.webp';"
+        alt="<%= course.name %>">
+    </a>
+</div>
+<div>
+    <a href="/course/<%= course.id %>">
+        <%= course.name %>
+    </a>
+</div>
+</div>

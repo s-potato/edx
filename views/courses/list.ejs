@@ -12,9 +12,12 @@
 </head>
 
 <body>
-    <div><a href="/">Back</a></div>
+    <div>
+        <a href="/" class="btn btn-primary button mb-3" >Back</a>
+    </div>
 
-    <table>
+    <table class="table table-striped">
+        <thead class="thead-dark">
         <tr>
             <th>Username</th>
             <th>Name</th>
@@ -24,9 +27,12 @@
             <th>Phone Number</th>
             <th>Country</th>
         </tr>
+        </thead>
+        <tbody>
         <% users.forEach(user=> { %>
             <%- include('enrollment', {user: user}); %>
-                <% }) %>
+        <% }) %>
+        </tbody>
 
     </table>
 
